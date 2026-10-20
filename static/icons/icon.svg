@@ -1,54 +1,84 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
   <defs>
+    <!-- 다크 프리미엄 배경 그라데이션 -->
     <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#1e3a8a"/>
-      <stop offset="50%" stop-color="#2563eb"/>
-      <stop offset="100%" stop-color="#0284c7"/>
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="50%" stop-color="#1e293b"/>
+      <stop offset="100%" stop-color="#090d16"/>
     </linearGradient>
-    <linearGradient id="barGrad1" x1="0%" y1="100%" x2="0%" y2="0%">
-      <stop offset="0%" stop-color="#38bdf8"/>
-      <stop offset="100%" stop-color="#bae6fd"/>
+
+    <!-- 1. 빨간색(Red) 그라데이션 막대 -->
+    <linearGradient id="redBar" x1="0%" y1="100%" x2="0%" y2="0%">
+      <stop offset="0%" stop-color="#dc2626"/>
+      <stop offset="50%" stop-color="#ef4444"/>
+      <stop offset="100%" stop-color="#f87171"/>
     </linearGradient>
-    <linearGradient id="barGrad2" x1="0%" y1="100%" x2="0%" y2="0%">
-      <stop offset="0%" stop-color="#f59e0b"/>
-      <stop offset="100%" stop-color="#fde68a"/>
+
+    <!-- 2. 노란색(Yellow) 그라데이션 막대 -->
+    <linearGradient id="yellowBar" x1="0%" y1="100%" x2="0%" y2="0%">
+      <stop offset="0%" stop-color="#d97706"/>
+      <stop offset="50%" stop-color="#f59e0b"/>
+      <stop offset="100%" stop-color="#fbbf24"/>
     </linearGradient>
-    <linearGradient id="accentLine" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#10b981"/>
-      <stop offset="100%" stop-color="#34d399"/>
+
+    <!-- 3. 파란색(Blue) 그라데이션 막대 -->
+    <linearGradient id="blueBar" x1="0%" y1="100%" x2="0%" y2="0%">
+      <stop offset="0%" stop-color="#1d4ed8"/>
+      <stop offset="50%" stop-color="#3b82f6"/>
+      <stop offset="100%" stop-color="#60a5fa"/>
     </linearGradient>
-    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
-      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#000000" flood-opacity="0.3"/>
+
+    <!-- 상승 추세선 그라데이션 (화이트/시안 빛) -->
+    <linearGradient id="trendGrad" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#f87171"/>
+      <stop offset="50%" stop-color="#fbbf24"/>
+      <stop offset="100%" stop-color="#60a5fa"/>
+    </linearGradient>
+
+    <!-- 입체감 섀도우 필터 -->
+    <filter id="glowShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="12" stdDeviation="16" flood-color="#000000" flood-opacity="0.5"/>
     </filter>
   </defs>
 
-  <!-- Background Card -->
-  <rect width="512" height="512" rx="112" fill="url(#bgGrad)"/>
+  <!-- 배경 둥근 사각형 -->
+  <rect width="512" height="512" rx="116" fill="url(#bgGrad)"/>
+  <rect width="504" height="504" x="4" y="4" rx="112" fill="none" stroke="#ffffff" stroke-opacity="0.1" stroke-width="2"/>
+
+  <!-- 배경 가이드 격자선 -->
+  <line x1="74" y1="400" x2="438" y2="400" stroke="#ffffff" stroke-opacity="0.25" stroke-width="4" stroke-linecap="round"/>
+  <line x1="74" y1="310" x2="438" y2="310" stroke="#ffffff" stroke-opacity="0.12" stroke-width="2" stroke-dasharray="6 6"/>
+  <line x1="74" y1="220" x2="438" y2="220" stroke="#ffffff" stroke-opacity="0.12" stroke-width="2" stroke-dasharray="6 6"/>
+  <line x1="74" y1="130" x2="438" y2="130" stroke="#ffffff" stroke-opacity="0.12" stroke-width="2" stroke-dasharray="6 6"/>
+
+  <!-- 빨강, 노랑, 파랑 3색 차트 막대 -->
+  <!-- 1. 빨간색 막대 (Red Bar) -->
+  <rect x="96" y="240" width="80" height="160" rx="18" fill="url(#redBar)" filter="url(#glowShadow)"/>
   
-  <!-- Subtle Grid Lines -->
-  <line x1="80" y1="380" x2="432" y2="380" stroke="#ffffff" stroke-opacity="0.25" stroke-width="4" stroke-linecap="round"/>
-  <line x1="80" y1="290" x2="432" y2="290" stroke="#ffffff" stroke-opacity="0.15" stroke-width="2" stroke-dasharray="6 6"/>
-  <line x1="80" y1="200" x2="432" y2="200" stroke="#ffffff" stroke-opacity="0.15" stroke-width="2" stroke-dasharray="6 6"/>
+  <!-- 2. 노란색 막대 (Yellow Bar) -->
+  <rect x="216" y="160" width="80" height="240" rx="18" fill="url(#yellowBar)" filter="url(#glowShadow)"/>
 
-  <!-- Chart Bars -->
-  <!-- Bar 1 -->
-  <rect x="110" y="270" width="52" height="110" rx="14" fill="url(#barGrad1)" filter="url(#shadow)"/>
-  <!-- Bar 2 (Key Highlight - Orange) -->
-  <rect x="190" y="150" width="52" height="230" rx="14" fill="url(#barGrad2)" filter="url(#shadow)"/>
-  <!-- Bar 3 -->
-  <rect x="270" y="220" width="52" height="160" rx="14" fill="url(#barGrad1)" filter="url(#shadow)"/>
-  <!-- Bar 4 -->
-  <rect x="350" y="180" width="52" height="200" rx="14" fill="url(#barGrad1)" filter="url(#shadow)"/>
+  <!-- 3. 파란색 막대 (Blue Bar - 최고점) -->
+  <rect x="336" y="90" width="80" height="310" rx="18" fill="url(#blueBar)" filter="url(#glowShadow)"/>
 
-  <!-- Trend Curve Line -->
-  <path d="M 136 250 Q 216 110 296 190 T 376 140" fill="none" stroke="url(#accentLine)" stroke-width="10" stroke-linecap="round" filter="url(#shadow)"/>
+  <!-- 상승 곡선 추세선 (Trend Line) -->
+  <path d="M 136 215 C 190 190, 210 135, 256 135 C 300 135, 330 75, 376 65" 
+        fill="none" stroke="#ffffff" stroke-width="8" stroke-linecap="round" filter="url(#glowShadow)"/>
 
-  <!-- Sparkle Node on Top -->
-  <circle cx="216" cy="130" r="14" fill="#ffffff" filter="url(#shadow)"/>
-  <circle cx="216" cy="130" r="7" fill="#f59e0b"/>
-  <circle cx="376" cy="140" r="10" fill="#ffffff" filter="url(#shadow)"/>
-  <circle cx="376" cy="140" r="5" fill="#10b981"/>
+  <!-- 추세선 위 3대 하이라이트 노드 포인트 -->
+  <!-- Red Node -->
+  <circle cx="136" cy="215" r="14" fill="#ffffff" filter="url(#glowShadow)"/>
+  <circle cx="136" cy="215" r="7" fill="#ef4444"/>
 
-  <!-- AI Sparkle Icon on Top-Right -->
-  <path d="M 400 70 L 408 92 L 430 100 L 408 108 L 400 130 L 392 108 L 370 100 L 392 92 Z" fill="#fde68a"/>
+  <!-- Yellow Node -->
+  <circle cx="256" cy="135" r="16" fill="#ffffff" filter="url(#glowShadow)"/>
+  <circle cx="256" cy="135" r="8" fill="#f59e0b"/>
+
+  <!-- Blue Node -->
+  <circle cx="376" cy="65" r="18" fill="#ffffff" filter="url(#glowShadow)"/>
+  <circle cx="376" cy="65" r="9" fill="#3b82f6"/>
+
+  <!-- AI 인사이트 반짝임 스타 (좌측 상단 & 우측 상단) -->
+  <path d="M 75 90 L 80 105 L 95 110 L 80 115 L 75 130 L 70 115 L 55 110 L 70 105 Z" fill="#fbbf24" opacity="0.9"/>
+  <path d="M 435 150 L 439 162 L 451 166 L 439 170 L 435 182 L 431 170 L 419 166 L 431 162 Z" fill="#60a5fa" opacity="0.8"/>
 </svg>

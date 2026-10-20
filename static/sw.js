@@ -1,5 +1,5 @@
 // PWA Service Worker (Cache & Offline Support for AI Data Insight Builder)
-const CACHE_NAME = 'data-insight-builder-v1';
+const CACHE_NAME = 'data-insight-builder-v2';
 const STATIC_ASSETS = [
   '/',
   '/static/style.css',
