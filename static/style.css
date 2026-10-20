@@ -948,26 +948,176 @@ body {
   color: #94a3b8;
 }
 
-/* 반응형 모바일 뷰 */
+.badge-desktop-text { display: inline; }
+.badge-mobile-text { display: none; }
+
+/* ==========================================================================
+   10-1. 모바일 전용 고도화 최적화 (반응형 768px & 480px)
+   ========================================================================== */
 @media (max-width: 768px) {
+  /* 1. 헤더 모바일 레이아웃 */
   .app-header {
-    padding: 1rem;
+    padding: 0.75rem 1rem;
   }
+  .header-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.6rem;
+  }
+  .brand-icon {
+    font-size: 1.8rem;
+  }
+  .brand-title {
+    font-size: 1.15rem;
+  }
+  .brand-subtitle {
+    font-size: 0.75rem;
+  }
+  
+  /* 배지 모바일 최적화 */
+  .system-badges {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    overflow-x: auto;
+    padding-bottom: 2px;
+    -webkit-overflow-scrolling: touch;
+  }
+  .badge {
+    font-size: 0.72rem;
+    padding: 0.25rem 0.55rem;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .badge-desktop-text { display: none; }
+  .badge-mobile-text { display: inline; }
+  
+  #pwaInstallBtn {
+    background: #2563eb !important;
+    color: #ffffff !important;
+    font-weight: 700 !important;
+    box-shadow: 0 2px 4px rgba(37,99,235,0.3) !important;
+  }
+
+  /* 2. 메인 컨테이너 및 카드 */
   .app-main {
-    padding: 0 1rem;
-    margin: 1rem auto;
+    padding: 0 0.75rem;
+    margin: 0.8rem auto 2rem;
   }
   .card {
-    padding: 1.25rem;
+    padding: 1.1rem;
+    border-radius: var(--radius-md);
   }
+  .card-header h2 {
+    font-size: 1.1rem;
+  }
+
+  /* 3. 모바일 자동 줌(Auto-zoom) 방지 (입력창 16px 이상 강제) */
+  input[type="text"],
+  input[type="password"],
+  input[type="number"],
+  select,
+  textarea {
+    font-size: 16px !important;
+  }
+
+  /* 4. 통계 그리드 모바일 2열 정렬 */
   .stat-grid {
     grid-template-columns: repeat(2, 1fr);
+    gap: 0.6rem;
   }
+  .stat-card {
+    padding: 0.75rem;
+  }
+  .stat-value {
+    font-size: 1.1rem;
+  }
+
+  /* 5. 칩 버튼 가로 스와이프(Touch Scroll) 지원 */
+  .query-chips, .followup-chips {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    gap: 0.45rem;
+    padding-bottom: 6px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .query-chips::-webkit-scrollbar,
+  .followup-chips::-webkit-scrollbar {
+    display: none;
+  }
+  .chip-btn {
+    white-space: nowrap;
+    flex-shrink: 0;
+    padding: 0.35rem 0.7rem;
+    font-size: 0.78rem;
+  }
+
+  /* 6. 데이터 미리보기 테이블 가로 터치 스크롤 강화 */
+  .preview-wrapper {
+    max-height: 280px;
+    -webkit-overflow-scrolling: touch;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+  }
+  .data-table th, .data-table td {
+    padding: 0.5rem 0.7rem;
+    font-size: 0.78rem;
+    white-space: nowrap;
+  }
+
+  /* 7. 차트 래퍼 높이 최적화 */
   .chart-wrapper {
-    min-height: 280px;
-    padding: 0.8rem;
+    min-height: 260px;
+    max-height: 340px;
+    padding: 0.6rem 0.4rem;
+  }
+
+  /* 8. 자연어 질의 & 후속질문 입력 폼 모바일 일체형 */
+  .nl-query-form, .followup-form {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .nl-query-input, .followup-input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+  }
+  .nl-query-form .btn, .followup-form .btn {
+    width: 100%;
+    padding: 0.75rem;
+  }
+
+  /* 9. 채팅 말풍선 모바일 너비 확장 */
+  .chat-message {
+    max-width: 95%;
+  }
+  .chat-bubble {
+    font-size: 0.88rem;
+    padding: 0.8rem 1rem;
+  }
+
+  /* 10. 탭 전환 버튼 */
+  .explain-tabs {
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+  .tab-btn {
+    width: 100%;
+    text-align: center;
   }
 }
+
+@media (max-width: 480px) {
+  .stat-grid {
+    grid-template-columns: 1fr;
+  }
+  .chart-wrapper {
+    min-height: 240px;
+  }
+}
+
 
 /* ==========================================================================
    11. 4자리 PIN 잠금 화면 모달 스타일
