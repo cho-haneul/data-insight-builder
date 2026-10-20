@@ -968,3 +968,82 @@ body {
     padding: 0.8rem;
   }
 }
+
+/* ==========================================================================
+   11. 4자리 PIN 잠금 화면 모달 스타일
+   ========================================================================== */
+.pin-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(15, 23, 42, 0.82);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999999;
+}
+
+.pin-modal-content {
+  background: #ffffff;
+  padding: 36px 32px;
+  border-radius: var(--radius-lg);
+  text-align: center;
+  max-width: 380px;
+  width: 90%;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  animation: modalFadeIn 0.25s ease-out;
+}
+
+.pin-icon {
+  font-size: 42px;
+  margin-bottom: 14px;
+}
+
+.pin-input-group {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin: 20px 0 12px;
+}
+
+#pinInput {
+  font-size: 24px;
+  letter-spacing: 10px;
+  text-align: center;
+  width: 150px;
+  padding: 10px 12px;
+  border: 2px solid var(--slate-300);
+  border-radius: var(--radius-md);
+  outline: none;
+  font-weight: 700;
+  color: var(--dark);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+#pinInput:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.18);
+}
+
+.pin-error-text {
+  color: var(--danger);
+  font-size: 13px;
+  font-weight: 600;
+  margin-top: 8px;
+}
+
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+

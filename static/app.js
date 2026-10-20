@@ -16,6 +16,47 @@ document.addEventListener("DOMContentLoaded", () => {
   console.log("[PAGE] 페이지 로드 완료");
 
   // ---------------------------------------------------------------------------
+  // 0. 4자리 숫자 비밀번호(PIN) 잠금 인증
+  // ---------------------------------------------------------------------------
+  const SITE_PIN = "0110";
+  const pinModal = document.getElementById("pinLockModal");
+  const pinInput = document.getElementById("pinInput");
+  const pinSubmitBtn = document.getElementById("pinSubmitBtn");
+  const pinErrorMsg = document.getElementById("pinErrorMsg");
+
+  function initPinAuth() {
+    if (!pinModal || !pinInput || !pinSubmitBtn) return;
+    const isAuth = sessionStorage.getItem("site_authenticated");
+    if (isAuth === "true") {
+      pinModal.style.display = "none";
+      return;
+    }
+
+    pinModal.style.display = "flex";
+    setTimeout(() => pinInput.focus(), 150);
+
+    function verifyPin() {
+      const entered = pinInput.value.trim();
+      if (entered === SITE_PIN) {
+        sessionStorage.setItem("site_authenticated", "true");
+        pinModal.style.display = "none";
+        if (pinErrorMsg) pinErrorMsg.style.display = "none";
+      } else {
+        if (pinErrorMsg) pinErrorMsg.style.display = "block";
+        pinInput.value = "";
+        pinInput.focus();
+      }
+    }
+
+    pinSubmitBtn.addEventListener("click", verifyPin);
+    pinInput.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") verifyPin();
+    });
+  }
+
+  initPinAuth();
+
+  // ---------------------------------------------------------------------------
   // 1. 상태 변수 및 DOM 참조
   // ---------------------------------------------------------------------------
   let currentFile = null;
