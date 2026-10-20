@@ -15,6 +15,15 @@
   <!-- Marked.js CDN (AI 마크다운 보고서 렌더링용) -->
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
+  <!-- PWA 메타 태그 및 매니페스트 -->
+  <link rel="manifest" href="/static/manifest.json">
+  <meta name="theme-color" content="#2563eb">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="InsightBuilder">
+  <link rel="apple-touch-icon" href="/static/icons/icon-192.png">
+  <link rel="icon" type="image/svg+xml" href="/static/icons/icon.svg">
+
   <!-- 순수 CSS 스타일시트 (외부 프레임워크 미사용) -->
   <link rel="stylesheet" href="/static/style.css">
 </head>
@@ -47,6 +56,7 @@
         </div>
       </div>
       <div class="system-badges">
+        <button id="pwaInstallBtn" class="badge badge-primary" style="display: none; cursor: pointer; border: none; background: #2563eb; color: #fff; font-weight: 600;">📲 앱 설치하기</button>
         <span class="badge" id="serverStatusBadge">🟢 서버 준비중</span>
         <span class="badge badge-info" id="modelBadge">모델: 로딩중</span>
         <span class="badge badge-warning">💾 메모리 1개 데이터셋 (재시작 시 초기화)</span>

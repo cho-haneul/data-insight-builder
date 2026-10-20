@@ -57,6 +57,41 @@ document.addEventListener("DOMContentLoaded", () => {
   initPinAuth();
 
   // ---------------------------------------------------------------------------
+  // 0.1 PWA Service Worker 등록 및 설치 프롬프트
+  // ---------------------------------------------------------------------------
+  let deferredPrompt = null;
+  const pwaInstallBtn = document.getElementById("pwaInstallBtn");
+
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('/static/sw.js')
+        .then((reg) => console.log('[PWA] Service Worker 등록 성공:', reg.scope))
+        .catch((err) => console.log('[PWA] Service Worker 등록 실패:', err));
+    });
+  }
+
+  window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
+    deferredPrompt = e;
+    if (pwaInstallBtn) {
+      pwaInstallBtn.style.display = 'inline-block';
+      pwaInstallBtn.addEventListener('click', async () => {
+        if (!deferredPrompt) return;
+        deferredPrompt.prompt();
+        const { outcome } = await deferredPrompt.userChoice;
+        console.log('[PWA] 설치 결과:', outcome);
+        deferredPrompt = null;
+        pwaInstallBtn.style.display = 'none';
+      });
+    }
+  });
+
+  window.addEventListener('appinstalled', () => {
+    console.log('[PWA] 앱 설치 완료');
+    if (pwaInstallBtn) pwaInstallBtn.style.display = 'none';
+  });
+
+  // ---------------------------------------------------------------------------
   // 1. 상태 변수 및 DOM 참조
   // ---------------------------------------------------------------------------
   let currentFile = null;
